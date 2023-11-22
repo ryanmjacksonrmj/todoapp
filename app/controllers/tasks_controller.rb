@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   def create
-    @task = Task.create(
+    @task = Todo.create(
       user_id: params[:user_id],
       title: params[:title],
       description: params[:description],
@@ -11,7 +11,7 @@ class TasksController < ApplicationController
   end
 
   def update
-    @task = Task.find(params[:id])
+    @task = Todo.find(params[:id])
     @task.update(
       user_id: params[:user_id] || @task.user_id,
       title: params[:title] || @task.title,
@@ -23,18 +23,18 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @task = Task.find(params[:id])
+    @task = Todo.find(params[:id])
     @task.destroy
     render json: { message: "Task destroyed successfully" }
   end
 
   def index
-    @tasks = Task.all
+    @tasks = Todo.all
     render :index
   end
 
   def show
-    @task = Task.find_by(id: params[:id])
+    @task = Todo.find_by(id: params[:id])
     render :show
   end
 end
